@@ -1,0 +1,1 @@
+export const OPEN_CELL = '@@OPEN_CELL';

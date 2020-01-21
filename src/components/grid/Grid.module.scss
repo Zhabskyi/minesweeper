@@ -1,0 +1,9 @@
+@import '../../styles/core.scss';
+
+.container {
+  width: 640px;
+  height: 640px;
+  display: flex;
+  flex-wrap: wrap;
+  background-color: transparent;
+}
