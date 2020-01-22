@@ -1,6 +1,6 @@
 import { connect } from "react-redux";
 import Grid from "../components/grid/Grid";
-import { loadGrid, getCells } from "../store/board";
+import { loadGrid, getCells, getOverlapCells, getOverlapFlags } from "../store/board";
 
 const mapDispatchToProps = dispatch => ({
   loadCells: () => dispatch(loadGrid())
@@ -8,7 +8,9 @@ const mapDispatchToProps = dispatch => ({
 
 const mapStateToProps = state => {
   return {
-    cells: getCells(state)
+    cells: getCells(state),
+    isCellOpen: getOverlapCells(state),
+    isFlag: getOverlapFlags(state)
   };
 };
 

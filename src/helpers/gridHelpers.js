@@ -84,4 +84,21 @@ const setCellNumberForBombs = gridOfBombs => {
   return gridOfBombs;
 };
 
-export { generateBombs, generateBoard, setBombs, setCellNumberForBombs };
+const generateOverlapBoard = size => {
+  let row = [];
+  for (let i = 0; i < size; i++) {
+    row[i] = [];
+    for (let j = 0; j < size; j++) {
+      row[i][j] = false;
+    }
+  }
+  return row;
+};
+
+export {
+  generateBombs,
+  generateBoard,
+  setBombs,
+  setCellNumberForBombs,
+  generateOverlapBoard
+};

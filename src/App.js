@@ -1,11 +1,12 @@
 import React from 'react';
-import Grid from "./containers/Grid";
 import classes from './App.module.scss';
+import Grid from "./containers/Grid";
+import Controlls from "./containers/Controls";
 
 const App = () => {
   return (
     <div className={classes.container}>
-      Hello world
+      <Controlls />
       <Grid />
     </div>
   );

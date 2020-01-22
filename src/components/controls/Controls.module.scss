@@ -1,0 +1,17 @@
+@import '../../styles/core.scss';
+
+.container {
+  width: 640px;
+  height: 100px;
+  display: flex;
+  background-color: $color-secondary-dark;
+}
+
+.reset {
+  cursor: pointer;
+  margin: auto;
+  font-size: $font-size-lage;
+  height: 50px;
+  width: 100px;
+  background-color: $color-secondary-light;
+}
