@@ -6,3 +6,4 @@ export const INCREMENT_FLAGS = '@@INCREMENT_FLAGS';
 export const DECREMENT_FLAGS = '@@DECREMENT_FLAGS';
 export const SET_BOMBS = '@@SET_BOMBS';
 export const SET_FLAGS_COUNT = '@@SET_FLAGS_COUNT';
+export const SET_GAME_OVER = '@@SET_GAME_OVER';

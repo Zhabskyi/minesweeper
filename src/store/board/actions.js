@@ -5,7 +5,8 @@ import {
   INCREMENT_FLAGS,
   DECREMENT_FLAGS,
   SET_BOMBS,
-  SET_FLAGS_COUNT
+  SET_FLAGS_COUNT,
+  SET_GAME_OVER
 } from "./actionTypes";
 
 import {
@@ -62,6 +63,11 @@ export const loadGrid = () => dispatch => {
     type: SET_FLAGS_COUNT,
     payload: 0
   });
+
+  dispatch({
+    type: SET_GAME_OVER,
+    payload: false
+  });
 };
 
 export const setFlag = coordinates => (dispatch, getState) => {
@@ -86,3 +92,8 @@ export const setFlag = coordinates => (dispatch, getState) => {
     payload: isFlag
   });
 };
+
+export const gameOver = () => ({
+  type: SET_GAME_OVER,
+  payload: true
+})

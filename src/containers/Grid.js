@@ -10,7 +10,8 @@ const mapStateToProps = state => {
   return {
     cells: getCells(state),
     isCellOpen: getOverlapCells(state),
-    isFlag: getOverlapFlags(state)
+    isFlag: getOverlapFlags(state),
+    gameOver: state.board.gameOver
   };
 };
 

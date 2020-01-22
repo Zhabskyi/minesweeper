@@ -3,6 +3,14 @@ import classes from "./Cell.module.scss";
 
 const Cell = props => {
   const { item, children, coordinates, open, flag } = props;
+
+  const gameOverHandler = () => {
+    if (item === 1) {
+      props.openCell(coordinates);
+      props.gameOver();
+    }
+  };
+
   if (open && !flag) {
     if (item === 1) {
       return <div className={classes.bomb}></div>;
@@ -24,7 +32,10 @@ const Cell = props => {
   } else {
     return (
       <div
-        onClick={() => props.openCell(coordinates)}
+        onClick={() => {
+          props.openCell(coordinates);
+          gameOverHandler();
+        }}
         onContextMenu={e => {
           e.preventDefault();
           props.setFlag(coordinates);

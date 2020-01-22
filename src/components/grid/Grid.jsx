@@ -27,18 +27,12 @@ const Grid = props => {
     }
   }
 
+  const endOfGame = <div className={classes.game_over}>GAME OVER</div>;
+
   return (
     <div className={classes.container}>
       {result}
-      {/* {props.cells?.map(el =>
-        el.map(item => {
-          return (
-            <Cell coordinates={[el, item]} item={item}>
-              {item}
-            </Cell>
-          );
-        })
-      )} */}
+      {props.gameOver ? endOfGame : null}
     </div>
   );
 };
