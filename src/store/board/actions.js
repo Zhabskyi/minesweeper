@@ -1,4 +1,12 @@
-import { OPEN_CELL, SET_NEW_GRID, SET_FLAG } from "./actionTypes";
+import {
+  OPEN_CELL,
+  SET_NEW_GRID,
+  SET_FLAG,
+  INCREMENT_FLAGS,
+  DECREMENT_FLAGS,
+  SET_BOMBS,
+  SET_FLAGS_COUNT
+} from "./actionTypes";
 
 import {
   generateBombs,
@@ -45,16 +53,34 @@ export const loadGrid = () => dispatch => {
     payload: overlapBoard
   });
 
-  console.log("RESULT", result);
-  console.log("RESULT OVERLAP", overlapBoard);
+  dispatch({
+    type: SET_BOMBS,
+    payload: 40
+  });
+
+  dispatch({
+    type: SET_FLAGS_COUNT,
+    payload: 0
+  });
 };
 
 export const setFlag = coordinates => (dispatch, getState) => {
   const state = getState();
-  let isFlag = { ...state.board.isFlag };
+  let isFlag = [...state.board.isFlag];
   isFlag[coordinates[0]][coordinates[1]] = !isFlag[coordinates[0]][
     coordinates[1]
   ];
+
+  if (isFlag[coordinates[0]][coordinates[1]]) {
+    dispatch({
+      type: INCREMENT_FLAGS
+    });
+  } else {
+    dispatch({
+      type: DECREMENT_FLAGS
+    });
+  }
+
   dispatch({
     type: SET_FLAG,
     payload: isFlag

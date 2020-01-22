@@ -4,12 +4,12 @@ import { Provider } from "react-redux";
 import {createStore, compose, applyMiddleware, combineReducers} from 'redux';
 import {board} from './store/board';
 import thunk from 'redux-thunk';
-import {controlPanel} from './store/controlPanel';
+import {infoPanel} from './store/infoPanel';
 import App from "./App";
 
 const rootReducer = combineReducers({
   board,
-  controlPanel
+  infoPanel
 });
 
 const composeEnhancers = (process.env.NODE_ENV !== 'production' && window.__REDUX_DEVTOOLS_EXTENSION_COMPOSE__)

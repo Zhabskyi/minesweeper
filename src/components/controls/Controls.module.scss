@@ -1,17 +1,50 @@
-@import '../../styles/core.scss';
+@import "../../styles/core.scss";
 
 .container {
   width: 640px;
   height: 100px;
   display: flex;
+  justify-content: space-evenly;
+  align-items: center;
   background-color: $color-secondary-dark;
 }
 
 .reset {
   cursor: pointer;
-  margin: auto;
   font-size: $font-size-lage;
   height: 50px;
   width: 100px;
   background-color: $color-secondary-light;
+}
+
+.flag {
+  display: flex;
+  justify-content: space-between;
+  width: 80px;
+  &_pic {
+    width: 40px;
+    height: 40px;
+    margin: 0;
+    background: url("../../static/FlagTransparent.png");
+  }
+  &_count {
+    font-size: $font-size-xl;
+    color: $white;
+  }
+}
+
+.bomb {
+  display: flex;
+  justify-content: space-between;
+  width: 80px;
+  &_pic {
+    width: 40px;
+    height: 40px;
+    margin: 0;
+    background: url("../../static/BombTransparent.png");
+  }
+  &_count {
+    font-size: $font-size-xl;
+    color: $white;
+  }
 }
