@@ -1,5 +1,5 @@
 import React from 'react';
-import Grid from "./components/grid/Grid";
+import Grid from "./containers/Grid";
 import classes from './App.module.scss';
 
 const App = () => {

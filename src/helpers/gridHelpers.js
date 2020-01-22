@@ -27,4 +27,61 @@ const setBombs = (board, bombs) => {
   return board;
 };
 
-export { generateBombs, generateBoard, setBombs };
+const setCellNumberForBombs = gridOfBombs => {
+  for (let i = 0; i < gridOfBombs.length; i++) {
+    for (let j = 0; j < gridOfBombs[i].length; j++) {
+      if (gridOfBombs[i][j] === 1) {
+        if (j - 1 >= 0) {
+          if (gridOfBombs[i][j - 1] !== 1) {
+            gridOfBombs[i][j - 1] += 2;
+          }
+        }
+
+        if (j + 1 < gridOfBombs.length) {
+          if (gridOfBombs[i][j + 1] !== 1) {
+            gridOfBombs[i][j + 1] += 2;
+          }
+        }
+
+        if (j - 1 >= 0 && i - 1 >= 0) {
+          if (gridOfBombs[i - 1][j - 1] !== 1) {
+            gridOfBombs[i - 1][j - 1] += 2;
+          }
+        }
+
+        if (i - 1 >= 0) {
+          if (gridOfBombs[i - 1][j] !== 1) {
+            gridOfBombs[i - 1][j] += 2;
+          }
+        }
+
+        if (i - 1 >= 0 && j + 1 < gridOfBombs.length) {
+          if (gridOfBombs[i - 1][j + 1] !== 1) {
+            gridOfBombs[i - 1][j + 1] += 2;
+          }
+        }
+
+        if (i + 1 < gridOfBombs.length && j - 1 >= 0) {
+          if (gridOfBombs[i + 1][j - 1] !== 1) {
+            gridOfBombs[i + 1][j - 1] += 2;
+          }
+        }
+
+        if (i + 1 < gridOfBombs.length) {
+          if (gridOfBombs[i + 1][j] !== 1) {
+            gridOfBombs[i + 1][j] += 2;
+          }
+        }
+
+        if (i + 1 < gridOfBombs.length && j + 1 < gridOfBombs.length) {
+          if (gridOfBombs[i + 1][j + 1] !== 1) {
+            gridOfBombs[i + 1][j + 1] += 2;
+          }
+        }
+      }
+    }
+  }
+  return gridOfBombs;
+};
+
+export { generateBombs, generateBoard, setBombs, setCellNumberForBombs };
