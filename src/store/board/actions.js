@@ -14,14 +14,16 @@ import {
   generateBoard,
   setBombs,
   setCellNumberForBombs,
-  generateOverlapBoard
+  generateOverlapBoard,
+  isArrayInArray
 } from "../../helpers/gridHelpers";
 
 export const openCell = coordinates => (dispatch, getState) => {
   const state = getState();
 
-  let isCellOpenRow = [...state.board.isCellOpen[[coordinates[0]]]];
+  let isCellOpenRow = [...state.board.isCellOpen[coordinates[0]]];
   let isCellOpen = [...state.board.isCellOpen];
+
   isCellOpenRow[coordinates[1]] = true;
   isCellOpen.splice([coordinates[0]], 1, isCellOpenRow);
   dispatch({
@@ -96,4 +98,111 @@ export const setFlag = coordinates => (dispatch, getState) => {
 export const gameOver = () => ({
   type: SET_GAME_OVER,
   payload: true
-})
+});
+
+export const openEmptyTiles = (coordinates, cells) => dispatch => {
+  let colectionEmtyCells = [];
+  let colectionCheckedCells = [];
+  dispatch(openCell(coordinates));
+
+  colectionEmtyCells.push(coordinates);
+
+  if (cells[coordinates[0]][coordinates[1]] !== 0) {
+    return;
+  }
+
+  do {
+    if (colectionEmtyCells[0] !== undefined) {
+      let i = colectionEmtyCells[0][0];
+      let j = colectionEmtyCells[0][1];
+
+      if (i + 1 < cells.length) {
+        if (
+          cells[i + 1][j] === 0 &&
+          !isArrayInArray(colectionCheckedCells, [i + 1, j])
+        ) {
+          colectionEmtyCells.push([i + 1, j]);
+          colectionCheckedCells.push([i + 1, j]);
+        }
+      }
+
+      if (i - 1 >= 0) {
+        if (
+          cells[i - 1][j] === 0 &&
+          !isArrayInArray(colectionCheckedCells, [i - 1, j])
+        ) {
+          colectionEmtyCells.push([i - 1, j]);
+          colectionCheckedCells.push([i - 1, j]);
+        }
+      }
+
+      if (j + 1 < cells.length) {
+        if (
+          cells[i][j + 1] === 0 &&
+          !isArrayInArray(colectionCheckedCells, [i, j + 1])
+        ) {
+          colectionEmtyCells.push([i, j + 1]);
+          colectionCheckedCells.push([i, j + 1]);
+        }
+      }
+
+      if (j - 1 >= 0) {
+        if (
+          cells[i][j - 1] === 0 &&
+          !isArrayInArray(colectionCheckedCells, [i, j - 1])
+        ) {
+          colectionEmtyCells.push([i, j - 1]);
+          colectionCheckedCells.push([i, j - 1]);
+        }
+      }
+
+      if (colectionEmtyCells.length >= 1) {
+        dispatch(
+          openCell([colectionEmtyCells[0][0], colectionEmtyCells[0][1]])
+        );
+
+        colectionEmtyCells.shift();
+      }
+    }
+  } while (colectionEmtyCells.length > 0);
+
+  for (let i = 0; i < colectionCheckedCells.length; i++) {
+    for (let j = 0; j < colectionCheckedCells[i].length; j++) {
+      if (colectionCheckedCells[i][0] + 1 < cells.length) {
+        dispatch(
+          openCell([
+            colectionCheckedCells[i][0] + 1,
+            colectionCheckedCells[i][1]
+          ])
+        );
+      }
+
+      if (colectionCheckedCells[i][0] - 1 >= 0) {
+        dispatch(
+          openCell([
+            colectionCheckedCells[i][0] - 1,
+            colectionCheckedCells[i][1]
+          ])
+        );
+      }
+
+      if (colectionCheckedCells[i][1] + 1 < cells.length) {
+        dispatch(
+          openCell([
+            colectionCheckedCells[i][0],
+            colectionCheckedCells[i][1] + 1
+          ])
+        );
+      }
+
+      if (colectionCheckedCells[i][1] - 1 >= 0) {
+        dispatch(
+          openCell([
+            colectionCheckedCells[i][0],
+            colectionCheckedCells[i][1] - 1
+          ])
+        );
+      }
+    }
+  }
+};

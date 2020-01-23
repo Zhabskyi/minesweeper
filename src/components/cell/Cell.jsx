@@ -2,12 +2,12 @@ import React from "react";
 import classes from "./Cell.module.scss";
 
 const Cell = props => {
-  const { item, children, coordinates, open, flag } = props;
+  const { item, children, coordinates, open, flag, cells } = props;
 
   const gameOverHandler = () => {
     if (item === 1) {
-      props.openCell(coordinates);
       props.gameOver();
+      props.openCell(coordinates, cells);
     }
   };
 
@@ -33,7 +33,7 @@ const Cell = props => {
     return (
       <div
         onClick={() => {
-          props.openCell(coordinates);
+          props.openCell(coordinates, cells);
           gameOverHandler();
         }}
         onContextMenu={e => {
