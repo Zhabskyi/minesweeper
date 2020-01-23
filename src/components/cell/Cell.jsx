@@ -8,6 +8,7 @@ const Cell = props => {
     if (item === 1) {
       props.gameOver();
       props.openCell(coordinates, cells);
+      props.stopTimer();
     }
   };
 

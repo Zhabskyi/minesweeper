@@ -166,6 +166,8 @@ export const openEmptyTiles = (coordinates, cells) => dispatch => {
     }
   } while (colectionEmtyCells.length > 0);
 
+
+  // Open all cells with numbers besides empty cells
   for (let i = 0; i < colectionCheckedCells.length; i++) {
     for (let j = 0; j < colectionCheckedCells[i].length; j++) {
       if (colectionCheckedCells[i][0] + 1 < cells.length) {

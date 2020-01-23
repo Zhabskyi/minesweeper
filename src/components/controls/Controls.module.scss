@@ -48,3 +48,19 @@
     color: $white;
   }
 }
+
+.timer {
+  display: flex;
+  justify-content: space-between;
+  width: 80px;
+  &_pic {
+    width: 40px;
+    height: 40px;
+    margin: 0;
+    background: url("../../static/Clock.png");
+  }
+  &_count {
+    font-size: $font-size-xl;
+    color: $white;
+  }
+}

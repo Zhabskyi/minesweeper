@@ -4,7 +4,7 @@ import Cell from "../../containers/Cell";
 
 const Grid = props => {
   useEffect(() => {
-    props.loadCells();
+   // props.loadCells();
     // eslint-disable-next-line
   }, []);
 

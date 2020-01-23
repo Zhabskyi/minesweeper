@@ -1,17 +1,14 @@
 import { connect } from "react-redux";
 import Cell from "../components/cell/Cell";
-import {
-  setFlag,
-  gameOver,
-  getCells,
-  openEmptyTiles
-} from "../store/board";
+import { setFlag, gameOver, getCells, openEmptyTiles } from "../store/board";
+import { stopTimer } from "../store/infoPanel";
 
 const mapDispatchToProps = dispatch => ({
   openCell: (coordinates, cells) =>
-    dispatch( openEmptyTiles(coordinates, cells)),
+    dispatch(openEmptyTiles(coordinates, cells)),
   setFlag: coordinates => dispatch(setFlag(coordinates)),
-  gameOver: () => dispatch(gameOver())
+  gameOver: () => dispatch(gameOver()),
+  stopTimer: () => dispatch(stopTimer())
 });
 
 const mapStateToProps = state => {
