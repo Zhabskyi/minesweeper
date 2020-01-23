@@ -34,6 +34,7 @@ const Cell = props => {
     return (
       <div
         onClick={() => {
+          props.isWinner();
           props.openCell(coordinates, cells);
           gameOverHandler();
         }}

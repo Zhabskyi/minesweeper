@@ -6,7 +6,9 @@ import {
   DECREMENT_FLAGS,
   SET_BOMBS,
   SET_FLAGS_COUNT,
-  SET_GAME_OVER
+  SET_GAME_OVER,
+  SET_WIN,
+  RESET_WIN
 } from "./actionTypes";
 
 const INITIAL_STATE = {
@@ -15,7 +17,8 @@ const INITIAL_STATE = {
   cells: [],
   flagsCount: 0,
   bombs: 0,
-  gameOver: false
+  gameOver: false,
+  isWin: false
 };
 
 export default (state = INITIAL_STATE, action) => {
@@ -44,6 +47,10 @@ export default (state = INITIAL_STATE, action) => {
       return { ...state, flagsCount: action.payload };
     case SET_GAME_OVER:
       return { ...state, gameOver: action.payload };
+    case SET_WIN:
+      return { ...state, isWin: true };
+    case RESET_WIN:
+      return { ...state, isWin: false };
     default:
       return { ...state };
   }

@@ -6,7 +6,9 @@ import {
   DECREMENT_FLAGS,
   SET_BOMBS,
   SET_FLAGS_COUNT,
-  SET_GAME_OVER
+  SET_GAME_OVER,
+  SET_WIN,
+  RESET_WIN
 } from "./actionTypes";
 
 import {
@@ -33,7 +35,7 @@ export const openCell = coordinates => (dispatch, getState) => {
 };
 
 export const loadGrid = () => dispatch => {
-  const bombs = generateBombs(40);
+  const bombs = generateBombs(4);
 
   const board = generateBoard(16);
 
@@ -58,7 +60,7 @@ export const loadGrid = () => dispatch => {
 
   dispatch({
     type: SET_BOMBS,
-    payload: 40
+    payload: bombs.length
   });
 
   dispatch({
@@ -69,6 +71,10 @@ export const loadGrid = () => dispatch => {
   dispatch({
     type: SET_GAME_OVER,
     payload: false
+  });
+
+  dispatch({
+    type: RESET_WIN
   });
 };
 
@@ -93,6 +99,8 @@ export const setFlag = coordinates => (dispatch, getState) => {
     type: SET_FLAG,
     payload: isFlag
   });
+
+  dispatch(isWinner());
 };
 
 export const gameOver = () => ({
@@ -166,7 +174,6 @@ export const openEmptyTiles = (coordinates, cells) => dispatch => {
     }
   } while (colectionEmtyCells.length > 0);
 
-
   // Open all cells with numbers besides empty cells
   for (let i = 0; i < colectionCheckedCells.length; i++) {
     for (let j = 0; j < colectionCheckedCells[i].length; j++) {
@@ -206,5 +213,35 @@ export const openEmptyTiles = (coordinates, cells) => dispatch => {
         );
       }
     }
+  }
+};
+
+export const isWinner = () => (dispatch, getState) => {
+  const state = getState();
+  let isFlag = [...state.board.isFlag];
+  let isCellOpen = [...state.board.isCellOpen];
+  let countOfFlags = 0;
+  let countOfOpen = 0;
+
+  for (let i = 0; i < isFlag.length; i++) {
+    for (let j = 0; j < isFlag[i].length; j++) {
+      if (isFlag[i][j]) {
+        countOfFlags = countOfFlags + 1;
+      }
+    }
+  }
+
+  for (let i = 0; i < isCellOpen.length; i++) {
+    for (let j = 0; j < isCellOpen[i].length; j++) {
+      if (isCellOpen[i][j]) {
+        countOfOpen = countOfOpen + 1;
+      }
+    }
+  }
+
+  if (countOfFlags === 4 && countOfOpen === 252) {
+    dispatch({
+      type: SET_WIN
+    });
   }
 };

@@ -2,8 +2,8 @@ const generateBombs = number => {
   let setOfBombs = [];
   for (let i = 0; i < number; i++) {
     let coordinates = [];
-    coordinates.push(Math.floor(Math.random() * 16));
-    coordinates.push(Math.floor(Math.random() * 16));
+    coordinates.push(Math.floor(Math.random() * 15));
+    coordinates.push(Math.floor(Math.random() * 15));
     setOfBombs.push(coordinates);
   }
   return setOfBombs;

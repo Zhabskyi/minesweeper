@@ -21,3 +21,23 @@
   font-weight: 700;
   background-color: $backdrop;
 }
+
+.win {
+  display: flex;
+  flex-direction: column;
+  z-index: 100;
+  padding-top: 100px;
+  text-align: center;
+  position: absolute;
+  left: 50%;
+  transform: translateX(-50%);
+  width: 640px;
+  height: 640px;
+  font-size: 72px;
+  font-weight: 700;
+  background-color: $backdrop;
+  &_time {
+    font-size: 48px;
+    font-weight: 500;
+  }
+}

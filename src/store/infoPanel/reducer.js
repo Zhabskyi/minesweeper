@@ -1,8 +1,7 @@
 import { START_TIMER, STOP_TIMER, RESET_TIMER } from "./actionTypes";
 
 const INITIAL_STATE = {
-  time: 0,
-  isOn: false
+  time: 0
 };
 
 export default (state = INITIAL_STATE, action) => {

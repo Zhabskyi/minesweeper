@@ -1,9 +1,19 @@
 import { connect } from "react-redux";
 import Grid from "../components/grid/Grid";
-import { loadGrid, getCells, getOverlapCells, getOverlapFlags } from "../store/board";
+import {
+  loadGrid,
+  getCells,
+  getOverlapCells,
+  getOverlapFlags,
+  getIsGameOver,
+  getIsWin
+} from "../store/board";
+
+import { getTime, stopTimer } from "../store/infoPanel";
 
 const mapDispatchToProps = dispatch => ({
-  loadCells: () => dispatch(loadGrid())
+  loadCells: () => dispatch(loadGrid()),
+  stopTimer: () => dispatch(stopTimer())
 });
 
 const mapStateToProps = state => {
@@ -11,7 +21,9 @@ const mapStateToProps = state => {
     cells: getCells(state),
     isCellOpen: getOverlapCells(state),
     isFlag: getOverlapFlags(state),
-    gameOver: state.board.gameOver
+    gameOver: getIsGameOver(state),
+    isWin: getIsWin(state),
+    time: getTime(state)
   };
 };
 

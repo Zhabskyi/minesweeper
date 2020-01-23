@@ -1,13 +1,8 @@
-import React, { useEffect } from "react";
+import React from "react";
 import classes from "./Grid.module.scss";
 import Cell from "../../containers/Cell";
 
 const Grid = props => {
-  useEffect(() => {
-   // props.loadCells();
-    // eslint-disable-next-line
-  }, []);
-
   let result = [];
   let key = 0;
   if (props.cells) {
@@ -30,11 +25,22 @@ const Grid = props => {
   }
 
   const endOfGame = <div className={classes.game_over}>GAME OVER</div>;
+  const Win = (
+    <div className={classes.win}>
+      <div>YOU WIN</div>
+      <div className={classes.win_time}>Your time is: {props.time} seconds</div>
+    </div>
+  );
+
+  if (props.isWin) {
+    props.stopTimer();
+  }
 
   return (
     <div className={classes.container}>
       {result}
       {props.gameOver ? endOfGame : null}
+      {props.isWin ? Win : null}
     </div>
   );
 };
