@@ -12,16 +12,16 @@ Minesweeper is a famouse game with follow features:
 
 ## Final Product
 
-Start the game:
+Start the game:<br />
 !["game started"](https://github.com/Zhabskyi/minesweeper/blob/master/src/static/start.png?raw=true)
 
-Play process:
+Play process:<br />
 !["play"](https://github.com/Zhabskyi/minesweeper/blob/master/src/static/play.png?raw=true)
 
-Game over:
+Game over:<br />
 !["game over"](https://github.com/Zhabskyi/minesweeper/blob/master/src/static/Game_over.png?raw=true)
 
-You win:
+You win:<br />
 !["win"](https://github.com/Zhabskyi/minesweeper/blob/master/src/static/Win.png?raw=true)
 
 This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
