@@ -37,7 +37,7 @@ const Grid = props => {
   }
 
   return (
-    <div className={classes.container}>
+    <div data-testid="grid" className={classes.container}>
       {result}
       {props.gameOver ? endOfGame : null}
       {props.isWin ? Win : null}

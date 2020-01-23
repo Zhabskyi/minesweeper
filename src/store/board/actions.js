@@ -35,7 +35,7 @@ export const openCell = coordinates => (dispatch, getState) => {
 };
 
 export const loadGrid = () => dispatch => {
-  const bombs = generateBombs(4);
+  const bombs = generateBombs(40);
 
   const board = generateBoard(16);
 
@@ -239,7 +239,7 @@ export const isWinner = () => (dispatch, getState) => {
     }
   }
 
-  if (countOfFlags === 4 && countOfOpen === 252) {
+  if (countOfFlags === 40 && countOfOpen === 216) {
     dispatch({
       type: SET_WIN
     });
